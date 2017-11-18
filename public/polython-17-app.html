@@ -1,0 +1,31 @@
+<link rel="import" href="bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="my-login.html">
+<!-- <link rel="import" href="test.html"> -->
+<!-- <link rel="import" href="my-notes.html"> -->
+<!-- <link rel="import" href="my-testing.html"> -->
+
+
+
+<dom-module id="polython-17-app">
+  <template>
+
+    <firebase-app
+      auth-domain="polython2017-bddab.firebaseapp.com"
+      database-url="https://polython2017-bddab.firebaseio.com"
+      api-key="AIzaSyDESl92RbtKpiacQxfdiUYcwlqwrw6r8Rc"
+      storage-bucket="polython2017-bddab.appspot.com"
+      messaging-sender-id="115715758548">
+    </firebase-app>
+    <my-login></my-login>
+    <!-- <my-notes></my-notes> -->
+
+  </template>
+
+  <script>
+
+  Polymer({
+    is: 'polython-17-app'
+  });
+
+  </script>
+</dom-module>
