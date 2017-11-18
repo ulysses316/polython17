@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./containers/login-container/login-container.html">
+
+<dom-module id="polython-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <login-container></login-container>
+  </template>
+  <script>
+    class PolythonApp extends Polymer.Element {
+      static get is() { return 'polython-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polython-app Holas'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolythonApp.is, PolythonApp);
+  </script>
+</dom-module>
