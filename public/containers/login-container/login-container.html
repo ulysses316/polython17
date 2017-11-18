@@ -1,10 +1,11 @@
-<link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
-<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../../../bower_components/paper-progress-button/paper-progress-button.html">
-<link rel="import" href="../../../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-progress-button/paper-progress-button.html">
+<link rel="import" href="../../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../../bower_components/polymerfire/firebase-auth.html">
 
 <dom-module id="login-container">
   <template>
@@ -42,15 +43,15 @@
         padding: 0;
       }
       .button-login {
-        background-color: var(--paper-green-500);
+        background-color: var(--paper-blue-500);
         color: white;
       }
       paper-checkbox.save-session {
-        --paper-checkbox-checked-color: var(--paper-green-500);
+        --paper-checkbox-checked-color: var(--paper-blue-500);
         margin: 15px 0 5px 0;
       }
       .login-a {
-        color: var(--paper-green-500);
+        color: var(--paper-blue-500);
         text-decoration: none;
       }
       #containerNotif {
@@ -66,7 +67,7 @@
           <paper-input id="inputUser" label="Usuario" required auto-validate error-message="Usuario inválido" value="{{appUser}}">
           </paper-input>
           <paper-input id="inputPass" label="Contraseña" type="{{passType(passToggle)}}" required auto-validate error-message="Contraseña inválida" value="{{appPass}}"></paper-input>
-          <paper-button raised class="button-login center-align" id="send">Inicar Sesión</paper-button>
+          <paper-button raised class="button-login center-align" id="send" on-click="login">Inicar Sesión</paper-button>
         </form>
       </div>
       <template is="dom-if" if="{{loading}}">
@@ -76,22 +77,36 @@
         <paper-toast id="loginNotification" class="fit-bottom" duration="2000"></paper-toast>
       </div>
     </paper-card>  
-    <!-- <iron-ajax
-      id="loginUser"
-      url="url"
-      method="post"
-      headers='{{headerBody}}'
-      handle-as="json"
-      last-response="{{loginResponse}}">
-    </iron-ajax> -->
+    <firebase-auth
+      id="auth"
+      user="{{user}}"
+      provider="google"
+      on-error="handleError"
+      status-known="{{statusKnown}}" >
+    </firebase-auth>
   </template>
   <script>
     class LoginContainer extends Polymer.Element {
       static get is() {return 'login-container'};
       static get properties() {
         return {
-          property: String
+          user: Object, 
+          statusKnown: Object,
         }
+      }
+      static get observers(){
+        return [
+          'userObserver(user.*)'
+        ]
+      }
+      userObserver(userObject){
+        console.log(userObject);
+      }
+      login(){
+        return this.$.auth.signInWithPopup();
+      }
+      logout() {
+        return this.$.auth.signOut();
       }
     }
 
