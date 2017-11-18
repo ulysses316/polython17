@@ -67,3 +67,31 @@
     }
   }
 }
+[debug] [2017-11-18T22:34:48.691Z] ----------------------------------------------------------------------
+[debug] [2017-11-18T22:34:48.699Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Damian Ruiz\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-11-18T22:34:48.701Z] CLI Version:   3.15.2
+[debug] [2017-11-18T22:34:48.703Z] Platform:      win32
+[debug] [2017-11-18T22:34:48.703Z] Node Version:  v6.11.2
+[debug] [2017-11-18T22:34:48.706Z] Time:          Sat Nov 18 2017 16:34:48 GMT-0600 (Hora estándar central (México))
+[debug] [2017-11-18T22:34:48.706Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-18T22:34:48.747Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-18T22:34:48.748Z] > authorizing via signed-in user
+[debug] [2017-11-18T22:34:48.760Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:34:48 GMT-0600 (Hora estándar central (México))
+[debug] [2017-11-18T22:34:49.471Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:34:49.471Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/polython2017-bddab/tokens  
+ Sat Nov 18 2017 16:34:49 GMT-0600 (Hora estándar central (México))
+[debug] [2017-11-18T22:34:49.817Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Damian Ruiz\Desktop\Polython2017'...
+[info] 
+[debug] [2017-11-18T22:34:49.817Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:34:49 GMT-0600 (Hora estándar central (México))
+[debug] [2017-11-18T22:34:50.083Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:34:50.085Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:34:50 GMT-0600 (Hora estándar central (México))
+[debug] [2017-11-18T22:34:50.550Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
