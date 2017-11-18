@@ -6,15 +6,15 @@
   <template>
 
     <firebase-auth
-    id="auth"
-    user="{{user}}"
-    provider="google"
-    on-error="handleError"
-    status-known="{{statusKnown}}" >
-      </firebase-auth>
-      <template is="dom-if" if="[[user]]">
-        <h1>Welcome to Polython 2017 [[user.displayName]]!</h1>
-      </template>
+      id="auth"
+      user="{{user}}"
+      provider="google"
+      on-error="handleError"
+      status-known="{{statusKnown}}" >
+    </firebase-auth>
+    <template is="dom-if" if="[[user]]">
+      <h1>Welcome to Polython 2017 [[user.displayName]]!</h1>
+    </template>
 
 
 
