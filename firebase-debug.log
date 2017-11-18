@@ -1,0 +1,70 @@
+[debug] [2017-11-18T22:55:12.321Z] ----------------------------------------------------------------------
+[debug] [2017-11-18T22:55:12.325Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2017-11-18T22:55:12.325Z] CLI Version:   3.15.2
+[debug] [2017-11-18T22:55:12.325Z] Platform:      linux
+[debug] [2017-11-18T22:55:12.325Z] Node Version:  v6.12.0
+[debug] [2017-11-18T22:55:12.325Z] Time:          Sat Nov 18 2017 16:55:12 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:12.326Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-18T22:55:12.341Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-18T22:55:12.341Z] > authorizing via signed-in user
+[debug] [2017-11-18T22:55:12.345Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:12 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:13.041Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:13.043Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/polython2017-bddab/tokens  
+ Sat Nov 18 2017 16:55:13 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:13.442Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/axva/Documentos/p_git/polython17'...
+[info] 
+[debug] [2017-11-18T22:55:13.451Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:13 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:13.758Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:13.759Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:13 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:14.156Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5000 is not available. Trying another port...
+[debug] [2017-11-18T22:55:14.184Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:14 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:14.354Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:14.355Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:14 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:14.667Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5004 is not available. Trying another port...
+[debug] [2017-11-18T22:55:14.675Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:14 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:14.855Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:14.856Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:14 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:15.179Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5008 is not available. Trying another port...
+[debug] [2017-11-18T22:55:15.184Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:15 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:15.425Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:15.426Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:15 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:15.794Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5012 is not available. Trying another port...
+[debug] [2017-11-18T22:55:15.802Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:15 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:15.979Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:15.980Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:15 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:16.306Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5016 is not available. Trying another port...
+[debug] [2017-11-18T22:55:16.310Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:16 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:16.484Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:16.485Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:16 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:16.748Z] <<< HTTP RESPONSE 200
+[warn] ⚠  hosting: Port 5020 is not available. Trying another port...
+[debug] [2017-11-18T22:55:16.757Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/polython2017-bddab  
+ Sat Nov 18 2017 16:55:16 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:16.924Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-18T22:55:16.929Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/115715758548/clients/_:getWebAppConfig  
+ Sat Nov 18 2017 16:55:16 GMT-0600 (CST)
+[debug] [2017-11-18T22:55:17.229Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5024
+
