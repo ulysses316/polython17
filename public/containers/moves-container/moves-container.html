@@ -1,0 +1,25 @@
+<dom-module id="moves-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      h2{
+      	font-family: 'Roboto', sans-serif;
+      }
+    </style>
+    <h2>Movimientos</h2>
+  </template>
+  <script>
+    class MovesContainer extends Polymer.Element {
+      static get is() {return 'moves-container'};
+      static get properties() {
+        return {
+          propiedades: String
+        }
+      }
+    }
+
+    window.customElements.define(MovesContainer.is, MovesContainer);
+  </script>
+</dom-module>

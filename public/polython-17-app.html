@@ -59,7 +59,6 @@
         ];
       }
       _routePageChanged(page) {
-        console.log('Session en _routePageChanged ' + this.session);
         if (this.session) this.page = 'welcome';
           else this.page = 'login';
       }
@@ -70,7 +69,6 @@
         return routeDictionary[key] || 'unrecognized.html'
       }
       _pageChanged(page){
-        console.log('cambio de pagina ' + page);
         let resolvedPageUrl;
         if (this.session) {
           resolvedPageUrl = this.resolveUrl(this.getUrl2Component(page));

@@ -98,8 +98,8 @@
             observer: "userObserver"
           },
           statusKnown: Object,
-          page: {
-            type: String,
+          session: {
+            type: Boolean,
             notify: true
           }
         }
@@ -116,8 +116,6 @@
           sessionStorage.setItem('sessionName', user.displayName);
           sessionStorage.setItem('sessionEmail', user.email);
           this.session = true;
-          console.log('Login peticion y session true');
-          console.log('Ruta welcome');
           this.$.doc.path = null;
           this.$.doc.data =  {
             name: user.displayName,
@@ -127,7 +125,7 @@
           this.$.doc.saveValue('/user', user.uid);
 
           window.location = '/#/welcome';
-          this.set('page', 'welcome');
+          location.reload();
           // recomendar lanzar evento y escucharlo en la app para cambiar la pagina.
         }
       }

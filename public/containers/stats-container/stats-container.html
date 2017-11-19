@@ -1,0 +1,25 @@
+<dom-module id="stats-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      h2{
+      	font-family: 'Roboto', sans-serif;
+      }
+    </style>
+    <h2>Estadisticas</h2>
+  </template>
+  <script>
+    class StatsContainer extends Polymer.Element {
+      static get is() {return 'stats-container'};
+      static get properties() {
+        return {
+          propiedades: String
+        }
+      }
+    }
+
+    window.customElements.define(StatsContainer.is, StatsContainer);
+  </script>
+</dom-module>
