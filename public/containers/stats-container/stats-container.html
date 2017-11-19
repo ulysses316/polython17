@@ -1,14 +1,38 @@
+<link rel="import" href="../../bower_components/paper-card/paper-card">
+<link rel="import" href="../../bower_components/paper-button/paper-button">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-expansion-panel/paper-expansion-panel.html">
+
 <dom-module id="stats-container">
   <template>
     <style>
       :host {
         display: block;
       }
-      h2{
-      	font-family: 'Roboto', sans-serif;
+      paper-card {
+        width: 100%;
+      }
+      app-toolbar {
+        background-color: var(--paper-blue-100);
       }
     </style>
-    <h2>Estadisticas</h2>
+    <paper-card image="" elevation="1" animated-shadow>
+      <app-toolbar>
+        <div main-title><span>Estadisticas</span></div>
+      </app-toolbar>
+      <div class="card-content">
+        <paper-expansion-panel header="Ingresos">
+          Grafica para ingresos
+        </paper-expansion-panel>
+        <paper-expansion-panel header="Egresos">
+          Grafica para ingresos
+        </paper-expansion-panel>
+        <paper-expansion-panel header="Ingresos / Egresos">
+          Grafica para ingresos
+        </paper-expansion-panel>
+      </div>
+    </paper-card>
   </template>
   <script>
     class StatsContainer extends Polymer.Element {
