@@ -1,0 +1,57 @@
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+
+<dom-module = id="show-cards">
+  <template>
+    <paper-card heading="Emmental" image="http://placehold.it/350x150/FFC107/000000" alt="Emmental">
+      <div class="card-content">
+        Emmentaler or Emmental is a yellow, medium-hard cheese that originated in the area around Emmental, Switzerland. It is one of the cheeses of Switzerland, and is sometimes known as Swiss cheese.
+      </div>
+      <div class="card-actions">
+        <paper-button>Share</paper-button>
+        <paper-button>Explore!</paper-button>
+      </div>
+    </paper-card>
+  </template>
+
+<script>
+   class polython17app extends Polymer.Element {
+     static get is() {return 'polython-17-app'};
+     static get properties() {
+       return {
+         propiedades:String
+       }
+     }
+     constructor() {
+       super();
+       //costructor content
+     }
+     ready() {
+       super.ready();
+       //ready content
+     }
+     connectedCallback() {
+       super.connectedCallback();
+       //connectedCallback content
+     }
+
+     /*
+       Observadores
+     */
+
+     /*
+       Handlers
+     */
+
+     /*
+       Listeners
+     */
+
+     /*
+       Métodos Internos
+     */
+
+   }
+  window.customElements.define(LoginContainer.is, LoginContainer);
+</script>
+</dom-module>
