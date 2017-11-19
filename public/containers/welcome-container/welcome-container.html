@@ -1,0 +1,23 @@
+
+<dom-module id="welcome-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hola Bienvenido</h2>
+  </template>
+  <script>
+    class WelcomeContainer extends Polymer.Element {
+      static get is() {return 'welcome-container'};
+      static get properties() {
+        return {
+          propiedades
+        }
+      }
+    }
+
+    window.customElements.define(WelcomeContainer.is, WelcomeContainer);
+  </script>
+</dom-module>

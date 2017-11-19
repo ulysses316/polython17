@@ -1,0 +1,29 @@
+<link rel="import" href="">
+
+<dom-module id="routes-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+		<template is="dom-if" if="session">
+			<
+		</template>    
+  </template>
+  <script>
+    class clase extends Polymer.Element {
+      static get is() {return 'routes-container'};
+      static get properties() {
+        return {
+          session: {
+          	type: Boolean,
+          	value: false
+          }
+        }
+      }
+    }
+
+    window.customElements.define(clase.is, clase);
+  </script>
+</dom-module>
