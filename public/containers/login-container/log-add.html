@@ -6,17 +6,17 @@
   <template>
 
     <firebase-auth
-    id="auth"
-    user="{{user}}"
-    provider="google"
-    on-error="handleError"
-    status-known="{{statusKnown}}" >
-      </firebase-auth>
-      <firebase-query
+      id="auth"
+      user="{{user}}"
+      provider="google"
+      on-error="handleError"
+      status-known="{{statusKnown}}" >
+    </firebase-auth>
+    <firebase-query
         id="query"
         path="/users/[[user.uid]]"
         data="{{notes}}">
-      </firebase-query>
+    </firebase-query>
 
       <template is="dom-if" if="[[user]]">
 
@@ -24,7 +24,6 @@
       </template>
       <paper-button risen on-tap="login" hidden$="[[user]]">Sing In</paper-button>
       <paper-button risen on-tap="logout" hidden$="[[!user]]">Sing Out</paper-button>
-
 
   </template>
 
