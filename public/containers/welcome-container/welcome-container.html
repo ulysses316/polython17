@@ -165,7 +165,6 @@
       	]
       }
       _subrouteChanged(page){
-      	console.log(page);
         this.pages = page || 'perfil';
       }
       logOut(e){
@@ -183,7 +182,6 @@
         console.log('Ruta desconocida, falta validad error')
       }
       _moduleChanged(module){
-      	console.log(module)
         const resolvedPageUrl = this.resolveUrl(this.getUrl2Component(module));
 
         Polymer.importHref(resolvedPageUrl, null, this.showPage404.bind(this), true);
