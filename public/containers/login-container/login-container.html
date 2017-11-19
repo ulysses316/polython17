@@ -67,7 +67,7 @@
           <paper-input id="inputUser" label="Usuario" required auto-validate error-message="Usuario inválido" value="{{appUser}}">
           </paper-input>
           <paper-input id="inputPass" label="Contraseña" type="{{passType(passToggle)}}" required auto-validate error-message="Contraseña inválida" value="{{appPass}}"></paper-input>
-          <paper-button raised class="button-login center-align" id="send" on-click="login">Inicar Sesión</paper-button>
+          <paper-button raised class="button-login center-align" id="send" on-click="login">Iniciar Sesión</paper-button>
         </form>
       </div>
       <template is="dom-if" if="{{loading}}">
@@ -76,7 +76,7 @@
       <div class="card-actions" id="containerNotif">
         <paper-toast id="loginNotification" class="fit-bottom" duration="2000"></paper-toast>
       </div>
-    </paper-card>  
+    </paper-card>
     <firebase-auth
       id="auth"
       user="{{user}}"
@@ -90,7 +90,7 @@
       static get is() {return 'login-container'};
       static get properties() {
         return {
-          user: Object, 
+          user: Object,
           statusKnown: Object,
         }
       }
