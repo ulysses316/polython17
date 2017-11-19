@@ -1,0 +1,51 @@
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<dom-module  id="show-cards">
+<template>
+    <style>
+    h4{
+      margin: 5px;
+      font-weight: bold;
+      font-size: large;
+    },
+    span{
+      font-weight: lighter;
+    }
+    </style>
+    <template is="dom-repeat" items="{{dataUserCards}}">
+    <paper-card heading="Emmental" image="http://placehold.it/350x150/FFC107/000000" alt="Emmental">
+      <div class="card-content">
+        <h4>Nombre: <span>[[item.name]] [[item.lastname]]</span></h4>
+        <h4>[[item.numberCard]]</h4>
+        <h4>Fecha: [[item.dateCard]]</h4>
+      </div>
+      <div class="card-actions">
+        <paper-button>DELETE</paper-button>
+        <paper-button>MORE DETAILS</paper-button>
+      </div>
+    </paper-card>
+    </template>
+</template>
+<script>
+  class ShowCards extends Polymer.Element {
+  static get is() { return 'show-cards'; }
+  static get properties() {
+        return {
+          dataUserCards: {
+            type: Array,
+            value() {
+              return [
+                {name: 'Bob', lastname: 'Smith', numberCard: 'xxxx xxxx xxxx xxxx', dateCard: '11/18'},
+                {name: 'Sally', lastname: 'Johnson', numberCard: 'xxxx xxxx xxxx xxxx', dateCard: '12/19'},
+                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx xxxx', dateCard: '10/20'},
+              ];
+            }
+          }
+        }
+      }
+
+    }
+  window.customElements.define(ShowCards.is, ShowCards);
+</script>
+</dom-module>
