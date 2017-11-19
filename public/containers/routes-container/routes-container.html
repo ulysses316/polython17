@@ -1,0 +1,33 @@
+<link rel="import" href="../login-container/login-container.html">
+<link rel="import" href="../welcome-container/welcome-container.html">
+
+<dom-module id="routes-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+		<template is="dom-if" if="[[session]]">
+			<welcome-container></welcome-container>
+		</template>    
+		<template is="dom-if" if="[[!session]]">
+			<login-container></login-container>
+		</template>
+  </template>
+  <script>
+    class clase extends Polymer.Element {
+      static get is() {return 'routes-container'};
+      static get properties() {
+        return {
+          session: {
+          	type: Boolean,
+          	value: true
+          }
+        }
+      }
+    }
+
+    window.customElements.define(clase.is, clase);
+  </script>
+</dom-module>
