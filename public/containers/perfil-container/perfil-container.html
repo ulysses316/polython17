@@ -1,0 +1,25 @@
+<dom-module id="perfil-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>[[userName]]</h2>
+  </template>
+  <script>
+    class PerfilContainer extends Polymer.Element {
+      static get is() {return 'perfil-container'};
+      static get properties() {
+        return {
+          userName: {
+          	type: String,
+          	value: function() {return sessionStorage.sessionName;}
+          }
+        }
+      }
+    }
+
+    window.customElements.define(PerfilContainer.is, PerfilContainer);
+  </script>
+</dom-module>

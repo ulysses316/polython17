@@ -6,6 +6,8 @@
 <link rel="import" href="../../../bower_components/paper-progress-button/paper-progress-button.html">
 <link rel="import" href="../../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../../bower_components/polymerfire/firebase-document.html">
+
 
 <dom-module id="login-container">
   <template>
@@ -58,16 +60,14 @@
         height: 50px;
       }
     </style>
-		<paper-card elevation="2" animated-shadow="true" class="center-center">
+
+    <paper-card elevation="2" animated-shadow="true" class="center-center">
       <div class="card-header center-align">
         <h4>Ingrese a su cuenta</h4>
       </div>
       <div class="card-content">
         <form>
-          <paper-input id="inputUser" label="Usuario" required auto-validate error-message="Usuario inválido" value="{{appUser}}">
-          </paper-input>
-          <paper-input id="inputPass" label="Contraseña" type="{{passType(passToggle)}}" required auto-validate error-message="Contraseña inválida" value="{{appPass}}"></paper-input>
-          <paper-button raised class="button-login center-align" id="send" on-click="login">Iniciar Sesión</paper-button>
+          <paper-button raised class="button-login center-align" id="send" on-click="loginRequest">Iniciar Sesión</paper-button>
         </form>
       </div>
       <template is="dom-if" if="{{loading}}">
@@ -84,29 +84,52 @@
       on-error="handleError"
       status-known="{{statusKnown}}" >
     </firebase-auth>
+    <firebase-document
+      id="doc">
+    </firebase-document>    
   </template>
   <script>
     class LoginContainer extends Polymer.Element {
       static get is() {return 'login-container'};
       static get properties() {
         return {
-          user: Object,
+          user: {
+            type: Object,
+            observer: "userObserver"
+          },
           statusKnown: Object,
+          page: {
+            type: String,
+            notify: true
+          }
         }
       }
-      static get observers(){
-        return [
-          'userObserver(user.*)'
-        ]
-      }
-      userObserver(userObject){
-        console.log(userObject);
-      }
-      login(){
-        return this.$.auth.signInWithPopup();
+      loginRequest() {
+        this.$.auth.signInWithPopup();
       }
       logout() {
-        return this.$.auth.signOut();
+        this.$.auth.signOut();
+      }
+      userObserver(user){
+        if(user && user.displayName && !sessionStorage.sessionUser){
+          sessionStorage.setItem('sessionUser', true);
+          sessionStorage.setItem('sessionName', user.displayName);
+          sessionStorage.setItem('sessionEmail', user.email);
+          this.session = true;
+          console.log('Login peticion y session true');
+          console.log('Ruta welcome');
+          this.$.doc.path = null;
+          this.$.doc.data =  {
+            name: user.displayName,
+            email: user.email,
+            photo: user.photoURL
+          };
+          this.$.doc.saveValue('/user', user.uid);
+
+          window.location = '/#/welcome';
+          this.set('page', 'welcome');
+          // recomendar lanzar evento y escucharlo en la app para cambiar la pagina.
+        }
       }
     }
 

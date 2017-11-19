@@ -6,10 +6,15 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../perfil-container/perfil-container.html">
 
 <dom-module id="welcome-container">
   <template>
     <style>
+    	:host{
+    		--app-toolbar-font-size: 13pt;
+    	};
       app-header {
 	      background-color: var(--paper-blue-500);
 	      color: #fff;
@@ -29,14 +34,33 @@
 	      margin-top: 80px;
 	      overflow: auto;
 	    }
+	    app-toolbar{
+	    	font-family: 'Roboto', sans-serif;
+	    }
+	    .title-main .align-app-toolbar {
+        display: inline-block;
+        vertical-align: middle;
+      }
     </style>
     <app-header-layout>
 
 	    <app-header fixed effects="waterfall" slot="header">
 	      <app-toolbar>
-	        <paper-icon-button id="toggle" icon="menu"></paper-icon-button>
-	        <div main-title>[[userName]]</div>
-	      </app-toolbar>
+          <div main-title class="title-main">
+            <paper-icon-button icon="menu" id="hamb_button_toolbar"></paper-icon-button>
+            <div class="align-app-toolbar">
+              <span class="title-app">Gestor Financiero</span>
+            </div>
+          </div>
+          <paper-avatar label="R" class="green" two-charts ></paper-avatar> 
+          <span class="hide-on-small-only username-span">[[userName]]</span>
+          <paper-menu-button horizontal-align="right">
+            <paper-icon-button icon="more-vert" slot="dropdown-trigger"></paper-icon-button>
+            <paper-listbox slot="dropdown-content">
+              <paper-item on-click="logOut"><iron-icon icon="exit-to-app"></iron-icon> Cerrar sesión</paper-item>
+            </paper-listbox>
+          </paper-menu-button>
+        </app-toolbar>
 	    </app-header>
 
 	    <app-drawer-layout id="drawerLayout">
@@ -44,21 +68,23 @@
 	      <app-drawer slot="drawer">
 	        <div class="drawer-content">
 	          <paper-icon-item>
-	            <iron-icon icon="inbox" slot="item-icon"></iron-icon> <span>Perfil</span>
+	            <iron-icon icon="icons:perm-identity" slot="item-icon"></iron-icon> <span>Perfil</span>
 	          </paper-icon-item>
 	          <paper-icon-item>
-	            <iron-icon icon="query-builder" slot="item-icon"></iron-icon> <span>Tarjeta</span>
+	            <iron-icon icon="icons:credit-card" slot="item-icon"></iron-icon> <span>Cuentas</span>
 	          </paper-icon-item>
 	          <paper-icon-item>
-	            <iron-icon icon="done" slot="item-icon"></iron-icon> <span>Configuraciones</span>
+	            <iron-icon icon="icons:swap-horiz" slot="item-icon"></iron-icon> <span>Movimientos</span>
+	          </paper-icon-item>
+	          <paper-icon-item>
+	            <iron-icon icon="icons:trending-up" slot="item-icon"></iron-icon> <span>Estadísticas</span>
 	          </paper-icon-item>
 	        </div>
 	      </app-drawer>
-	      
 	      <sample-content size="100"></sample-content>
 
+	      <perfil-container></perfil-container>
 	    </app-drawer-layout>
-
 	  </app-header-layout>
   </template>
   <script>
@@ -68,9 +94,18 @@
         return {
           userName:{
           	type: String, 
-          	value: 'Damian Ruiz'
-          } 
+          	value: function() { return sessionStorage.sessionName; }
+          },
+          session: {
+          	type: Boolean,
+          	notify: true
+          }
         }
+      }
+      logOut(e){
+        sessionStorage.clear();
+        this.session = false;
+        window.location = '/#/login';
       }
     }
 

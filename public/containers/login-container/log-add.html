@@ -5,31 +5,31 @@
 <dom-module id="log-add">
   <template>
 
-    <firebase-auth
-    id="auth"
-    user="{{user}}"
-    provider="google"
-    on-error="handleError"
-    status-known="{{statusKnown}}" >
-      </firebase-auth>
-      <firebase-query
-        id="query"
-        path="/users/[[user.uid]]"
-        data="{{notes}}">
-      </firebase-query>
+    <!-- <firebase-auth
+      id="auth"
+      user="{{user}}"
+      provider="google"
+      on-error="handleError"
+      status-known="{{statusKnown}}" >
+    </firebase-auth>
+    <firebase-query
+      id="query"
+      path="/users/[[user.uid]]"
+      data="{{notes}}">
+    </firebase-query>
+ -->
+    <template is="dom-if" if="[[user]]">
 
-      <template is="dom-if" if="[[user]]">
-
-        <h1>Welcome to my app [[user.displayName]]</h1>
-      </template>
-      <paper-button risen on-tap="login" hidden$="[[user]]">Sing In</paper-button>
-      <paper-button risen on-tap="logout" hidden$="[[!user]]">Sing Out</paper-button>
+      <h1>Welcome to my app [[user.displayName]]</h1>
+    </template>
+    <paper-button risen on-tap="login" hidden$="[[user]]">Sing In</paper-button>
+    <paper-button risen on-tap="logout" hidden$="[[!user]]">Sing Out</paper-button>
 
 
   </template>
 
   <script>
-  Polymer({
+    Polymer({
       is:'log-add',
       properties : {
         user: {
@@ -38,6 +38,10 @@
         },
         statusKnown: {
           type: Object
+        },
+        session: {
+          type: Object,
+          notify: true
         }
       },
       login: function() {
@@ -48,7 +52,7 @@
         return this.$.auth.signOut();
       },
       userObserver: function(user){
-        console.log(user)
+        console.log('holaaaaaaaaa');
         if(user){
           var userName= user.displayName;
           var userEmail= user.email;
