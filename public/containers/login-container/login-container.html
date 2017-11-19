@@ -1,0 +1,115 @@
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-progress-button/paper-progress-button.html">
+<link rel="import" href="../../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../../bower_components/polymerfire/firebase-auth.html">
+
+<dom-module id="login-container">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --paper-button: {
+          width: 90%;
+          margin: 15px auto;
+          display: block;
+          clear: both;
+        };
+      }
+      .center-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 350px;
+      }
+      .center-align{
+        text-align: center;
+      }
+      .card-header {
+        background-color: var(--paper-grey-100);
+        padding: 5px 25px;
+        color: #252525;
+      }
+      .card-actions {
+        text-align: center;
+        background-color: var(--paper-grey-200);
+      }
+      paper-card paper-progress {
+        width: 100%;
+        padding: 0;
+      }
+      .button-login {
+        background-color: var(--paper-blue-500);
+        color: white;
+      }
+      paper-checkbox.save-session {
+        --paper-checkbox-checked-color: var(--paper-blue-500);
+        margin: 15px 0 5px 0;
+      }
+      .login-a {
+        color: var(--paper-blue-500);
+        text-decoration: none;
+      }
+      #containerNotif {
+        height: 50px;
+      }
+    </style>
+		<paper-card elevation="2" animated-shadow="true" class="center-center">
+      <div class="card-header center-align">
+        <h4>Ingrese a su cuenta</h4>
+      </div>
+      <div class="card-content">
+        <form>
+          <paper-input id="inputUser" label="Usuario" required auto-validate error-message="Usuario inválido" value="{{appUser}}">
+          </paper-input>
+          <paper-input id="inputPass" label="Contraseña" type="{{passType(passToggle)}}" required auto-validate error-message="Contraseña inválida" value="{{appPass}}"></paper-input>
+          <paper-button raised class="button-login center-align" id="send" on-click="login">Inicar Sesión</paper-button>
+        </form>
+      </div>
+      <template is="dom-if" if="{{loading}}">
+        <paper-progress indeterminate></paper-progress>
+      </template>
+      <div class="card-actions" id="containerNotif">
+        <paper-toast id="loginNotification" class="fit-bottom" duration="2000"></paper-toast>
+      </div>
+    </paper-card>  
+    <firebase-auth
+      id="auth"
+      user="{{user}}"
+      provider="google"
+      on-error="handleError"
+      status-known="{{statusKnown}}" >
+    </firebase-auth>
+  </template>
+  <script>
+    class LoginContainer extends Polymer.Element {
+      static get is() {return 'login-container'};
+      static get properties() {
+        return {
+          user: Object, 
+          statusKnown: Object,
+        }
+      }
+      static get observers(){
+        return [
+          'userObserver(user.*)'
+        ]
+      }
+      userObserver(userObject){
+        console.log(userObject);
+      }
+      login(){
+        return this.$.auth.signInWithPopup();
+      }
+      logout() {
+        return this.$.auth.signOut();
+      }
+    }
+
+    window.customElements.define(LoginContainer.is, LoginContainer);
+  </script>
+</dom-module>

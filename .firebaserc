@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "polython2017-bddab"
+    "default": "polython2017-bddab",
+    "damian": "polython2017-bddab"
   }
 }
