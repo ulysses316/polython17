@@ -1,4 +1,5 @@
-<link rel="import" href="">
+<link rel="import" href="../login-container/login-container.html">
+<link rel="import" href="../welcome-container/welcome-container.html">
 
 <dom-module id="routes-container">
   <template>
@@ -7,9 +8,12 @@
         display: block;
       }
     </style>
-		<template is="dom-if" if="session">
-			<
+		<template is="dom-if" if="[[session]]">
+			<welcome-container></welcome-container>
 		</template>    
+		<template is="dom-if" if="[[!session]]">
+			<login-container></login-container>
+		</template>
   </template>
   <script>
     class clase extends Polymer.Element {
@@ -18,7 +22,7 @@
         return {
           session: {
           	type: Boolean,
-          	value: false
+          	value: true
           }
         }
       }

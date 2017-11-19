@@ -22,6 +22,8 @@
     "paper-card": "PolymerElements/paper-card#^2.0.0",
     "iron-icon": "PolymerElements/iron-icon#^2.0.1",
     "paper-progress-button": "Collaborne/paper-progress-button#^2.1.0",
-    "paper-toast": "PolymerElements/paper-toast#^2.0.0"
+    "paper-toast": "PolymerElements/paper-toast#^2.0.0",
+    "app-layout": "PolymerElements/app-layout#^2.0.4",
+    "paper-item": "PolymerElements/paper-item#^2.0.0"
   }
 }
