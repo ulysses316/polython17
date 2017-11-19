@@ -7,7 +7,7 @@
     h4{
       margin: 15px;
       font-weight: bold;
-      font-size: normal;
+      font-size: large;
     },
     span{
       font-weight: lighter;
@@ -17,7 +17,7 @@
     }
     </style>
     <template is="dom-repeat" items="{{dataUserCards}}">
-    <paper-card heading="Elemental" image="[[item.imgCard]]" alt="Afiliacion">
+    <paper-card heading="[[item.nameCard]]" image="http://cdn.shopify.com/s/files/1/1595/6395/products/Credit_Card_grande.png?v=1486052681"  style="width: 300px" alt="Afiliacion">
       <div class="card-content">
         <h4>Nombre: <span>[[item.name]] [[item.lastname]]</span></h4>
         <h4>[[item.numberCard]]</h4>
@@ -46,14 +46,14 @@
         return {
           dataUserCards: {
             type: Array,
-            value() {
+            value: function (){
               return [
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 1234', dateCard: '11/18', imgCard: '"../../img/cardImage.png"'},
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 54321', dateCard: '12/19', imgCard: '"../../img/cardImage.png"'},
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 6789', dateCard: '10/20', imgCard: '"../../img/cardImage.png"'},
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 9876', dateCard: '9/21', imgCard: '"../../img/cardImage.png"'},
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 1121', dateCard: '9/19', imgCard: '"../../img/cardImage.png"'},
-                {name: 'Jhon', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 8042', dateCard: '9/20', imgCard: '"../../img/cardImage.png"'}
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 1234', dateCard: '11/18',nameCard: 'bancosa'},
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 54321', dateCard: '12/19', nameCard: 'santandor'},
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 6789', dateCard: '10/20', nameCard: 'vhsc'},
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 9876', dateCard: '9/21', nameCard: 'keybank'},
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 1121', dateCard: '9/19', nameCard: 'east-bank'},
+                {name: 'john', lastname: 'Wick', numberCard: 'xxxx xxxx xxxx 8042', dateCard: '9/20',nameCard: 'viking-banak'}
               ];
             }
           }
