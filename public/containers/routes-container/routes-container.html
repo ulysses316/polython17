@@ -9,25 +9,33 @@
       }
     </style>
 		<template is="dom-if" if="[[session]]">
-			<welcome-container></welcome-container>
+			<welcome-container session-user="{{session}}"></welcome-container>
 		</template>    
 		<template is="dom-if" if="[[!session]]">
-			<login-container></login-container>
+			<login-container session-us="{{session}}"></login-container>
 		</template>
   </template>
   <script>
-    class clase extends Polymer.Element {
+    class RoutesContainer extends Polymer.Element {
       static get is() {return 'routes-container'};
       static get properties() {
         return {
           session: {
-          	type: Boolean,
-          	value: true
+          	type: Boolean, 
+          	value: false
           }
         }
       }
+      static get observers(){
+      	return [
+      		'sessionObserver(session)'
+      	]
+      }
+      sessionObserver(session){
+      	console.log(session);
+      }
     }
 
-    window.customElements.define(clase.is, clase);
+    window.customElements.define(RoutesContainer.is, RoutesContainer);
   </script>
 </dom-module>

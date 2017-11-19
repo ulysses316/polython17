@@ -6,14 +6,27 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../perfil-container/perfil-container.html">
+<link rel="import" href="../show-cards/show-cards.html">
+<link rel="import" href="../stats-container/stats-container.html">
+<link rel="import" href="../moves-container/moves-container.html">
 
 <dom-module id="welcome-container">
   <template>
     <style>
+    	:host{
+    		--app-toolbar-font-size: 13pt;
+    	};
       app-header {
 	      background-color: var(--paper-blue-500);
 	      color: #fff;
 	    }
+	    app-drawer a {
+        color: inherit;
+        text-decoration: none;
+      }
 	    app-header paper-icon-button {
 	      --paper-icon-button-ink-color: #fff;
 	    }
@@ -29,48 +42,149 @@
 	      margin-top: 80px;
 	      overflow: auto;
 	    }
+	    app-toolbar{
+	    	font-family: 'Roboto', sans-serif;
+	    }
+	    .title-main .align-app-toolbar {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      app-drawer paper-listbox {
+        --paper-listbox-background-color: transparent;
+        --paper-listbox-color: var(--drawer-color);
+      }
+      app-drawer paper-listbox paper-item {
+        font-size: 11pt;
+      }
+      app-drawer paper-item.iron-selected {
+        color: white;
+      }
     </style>
-    <app-header-layout>
+    <app-route route="{{route}}" pattern="/:module" data="{{moduleData}}"></app-route>
+    <app-route route="{{route}}" pattern="/perfil" tail="{{perfilRoute}}"></app-route>
 
+    <app-header-layout>
 	    <app-header fixed effects="waterfall" slot="header">
 	      <app-toolbar>
-	        <paper-icon-button id="toggle" icon="menu"></paper-icon-button>
-	        <div main-title>[[userName]]</div>
-	      </app-toolbar>
+          <div main-title class="title-main">
+            <paper-icon-button icon="menu" id="hamb_button_toolbar"></paper-icon-button>
+            <div class="align-app-toolbar">
+              <span class="title-app">Gestor Financiero</span>
+            </div>
+          </div>
+          <paper-avatar label="R" class="green" two-charts ></paper-avatar> 
+          <span class="hide-on-small-only username-span">[[userName]]</span>
+          <paper-menu-button horizontal-align="right">
+            <paper-icon-button icon="more-vert" slot="dropdown-trigger"></paper-icon-button>
+            <paper-item on-click="logOut"><iron-icon icon="exit-to-app"></iron-icon> Cerrar sesión</paper-item>
+          </paper-menu-button>
+        </app-toolbar>
 	    </app-header>
 
 	    <app-drawer-layout id="drawerLayout">
 
 	      <app-drawer slot="drawer">
 	        <div class="drawer-content">
-	          <paper-icon-item>
-	            <iron-icon icon="inbox" slot="item-icon"></iron-icon> <span>Perfil</span>
-	          </paper-icon-item>
-	          <paper-icon-item>
-	            <iron-icon icon="query-builder" slot="item-icon"></iron-icon> <span>Tarjeta</span>
-	          </paper-icon-item>
-	          <paper-icon-item>
-	            <iron-icon icon="done" slot="item-icon"></iron-icon> <span>Configuraciones</span>
-	          </paper-icon-item>
+		        <paper-listbox selected="{{pages}}" attr-for-selected="name">
+		        	<a href="[[rootPath]]welcome/perfil" name="perfil" >
+				        <paper-icon-item>
+			            <iron-icon icon="icons:perm-identity" slot="item-icon"></iron-icon> <span>Perfil</span>
+			          </paper-icon-item>
+			        </a>
+			        <a href="[[rootPath]]welcome/cuentas" name="cuentas" >
+			          <paper-icon-item>
+			            <iron-icon icon="icons:credit-card" slot="item-icon"></iron-icon> <span>Cuentas</span>
+			          </paper-icon-item>
+			        </a>
+			        <a href="[[rootPath]]welcome/movimientos" name="movimientos" >
+			          <paper-icon-item>
+			            <iron-icon icon="icons:swap-horiz" slot="item-icon"></iron-icon> <span>Movimientos</span>
+			          </paper-icon-item>
+			        </a>
+			        <a href="[[rootPath]]welcome/estadisticas" name="estadisticas" >
+			          <paper-icon-item>
+			            <iron-icon icon="icons:trending-up" slot="item-icon"></iron-icon> <span>Estadísticas</span>
+			          </paper-icon-item>
+			        </a>
+	          </paper-listbox>
 	        </div>
 	      </app-drawer>
-	      
 	      <sample-content size="100"></sample-content>
 
+	      <iron-pages selected="{{pages}}" attr-for-selected="name" selected-attribute="active">
+	      	<show-cards name="cuentas"></show-cards>
+	      	<perfil-container name="perfil"></perfil-container>
+	      	<stats-container name="estadisticas"></stats-container>
+	      	<moves-container name="movimientos"></moves-container>
+				</iron-pages>
 	    </app-drawer-layout>
-
 	  </app-header-layout>
   </template>
   <script>
+  	const generalRouteDirectory = {
+      perfil: {
+        route:  '../perfil-container/perfil-container.html',
+        title: 'perfil'
+      },
+      cuentas: {
+        route:  '../show-cards/show-cards.html',
+        title: 'cuentas'
+      },
+      movimientos: {
+        route:  '../moves-container/moves-container.html',
+        title: 'movimientos'
+      },
+      estadisticas: {
+        route:  '../stats-container/stats-container.html',
+        title: 'estadisticas'
+      }
+    }
     class WelcomeContainer extends Polymer.Element {
       static get is() {return 'welcome-container'};
       static get properties() {
         return {
           userName:{
           	type: String, 
-          	value: 'Damian Ruiz'
-          } 
+          	value: function() { return sessionStorage.sessionName; }
+          },
+          session: {
+          	type: Boolean,
+          	notify: true
+          },
+          pages: String,
+          rootPath: {
+          	type: String,
+          	value: 'http://localhost:5000/#/'
+          }
         }
+      }
+      static get observers(){
+      	return [
+      		'_subrouteChanged(moduleData.module)',
+      		'_moduleChanged(pages)'
+      	]
+      }
+      _subrouteChanged(page){
+        this.pages = page || 'perfil';
+      }
+      logOut(e){
+        sessionStorage.clear();
+        this.session = false;
+        window.location = '/#/login';
+      }
+      getUrl2Component(key){
+        const container = generalRouteDirectory[key] || null;
+        if (container) return container.route;
+
+        return 'unrecognized.html'
+      }
+      showPage404() {
+        console.log('Ruta desconocida, falta validad error')
+      }
+      _moduleChanged(module){
+        const resolvedPageUrl = this.resolveUrl(this.getUrl2Component(module));
+
+        Polymer.importHref(resolvedPageUrl, null, this.showPage404.bind(this), true);
       }
     }
 

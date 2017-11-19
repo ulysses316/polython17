@@ -1,0 +1,21 @@
+<dom-module id="not-found">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="center-align">
+      <h1>404</h1>
+      <h2>NOT FOUND</h2>
+      <h4>No pudimos encontrar la ruta especificada, verifica que esté bien escrita</h4>
+    </div>
+  </template>
+  <script>
+    class NotFound extends Polymer.Element {
+      static get is() { return 'not-found' };
+    }
+
+    window.customElements.define(NotFound.is, NotFound);
+  </script>
+</dom-module>

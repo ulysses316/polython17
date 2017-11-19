@@ -1,12 +1,13 @@
 <link rel="import" href="bower_components/polymerfire/firebase-app.html">
-<link rel="import" href="./containers/routes-container/routes-container.html">
-<link rel="import" href="./containers/login-container/create-user.html">
-<link rel="import" href="./containers/login-container/my-login.html">
-<link rel="import" href="./containers/login-container/log-add.html">
+<link rel="import" href="bower_components/app-route/app-location.html">
+<link rel="import" href="bower_components/app-route/app-route.html">
+<link rel="import" href="bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="./containers/login-container/login-container.html">
+<link rel="import" href="./containers/welcome-container/welcome-container.html">
+<link rel="import" href="./containers/not-found/not-found.html">
 
 <dom-module id="polython-17-app">
   <template>
-
     <firebase-app
       auth-domain="polython2017-bddab.firebaseapp.com"
       database-url="https://polython2017-bddab.firebaseio.com"
@@ -14,15 +15,70 @@
       storage-bucket="polython2017-bddab.appspot.com"
       messaging-sender-id="115715758548">
     </firebase-app>
-    <!-- <routes-container></routes-container> -->
-    <log-add></log-add>
+
+    <app-location route="{{route}}" use-hash-as-path url-space-regex="^[[rootPath]]"></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
+
+    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="notfound">
+      <login-container name="login" page="{{page}}"></login-container>
+      <welcome-container name="welcome" session="{{session}}"></welcome-container>
+      <not-found name="notfound"></not-found>
+    </iron-pages>
   </template>
 
   <script>
+    const routeDictionary = {
+      welcome: './containers/welcome-container/welcome-container.html',
+      login: './containers/login-container/login-container.html',
+      notfound: './containers/not-found/not-found.html'
+    }
+    class Polython17App extends Polymer.Element {
+      static get is() {return 'polython-17-app'};
+      static get properties() {
+        return {
+          route: Object,
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged',
+          },
+          session: {
+            type: Boolean,
+            value () {
+              return sessionStorage.sessionUser != undefined;
+            }
+          },
+          routeData: {
+            type: Object
+          }
+        }
+      }
+      static get observers() {
+        return [
+          '_routePageChanged(routeData.page)',
+        ];
+      }
+      _routePageChanged(page) {
+        if (this.session) this.page = 'welcome';
+          else this.page = 'login';
+      }
+      showPage404() {
+        this.page = "notfound"
+      }
+      getUrl2Component(key){
+        return routeDictionary[key] || 'unrecognized.html'
+      }
+      _pageChanged(page){
+        let resolvedPageUrl;
+        if (this.session) {
+          resolvedPageUrl = this.resolveUrl(this.getUrl2Component(page));
+        } else {
+          resolvedPageUrl = this.resolveUrl(this.getUrl2Component('login'))
+        }
+        Polymer.importHref(resolvedPageUrl, null, this.showPage404.bind(this), true);
+      }
+    }
 
-  Polymer({
-    is: 'polython-17-app'
-  });
-
+    window.customElements.define(Polython17App.is, Polython17App);
   </script>
 </dom-module>
